@@ -3,163 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akoss's Restaurant</title>
+    <title>Calculator</title>
     <style>
-        header {
-            background-color: #e24433; /* Red background color */
-            color: #fff; /* White text color */
-            text-align: center;
-            padding: 20px;
-        }
-
-        header h1 {
+        body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        section {
-            margin: 20px;
+        .calculator {
+            background-color: #fff;
+            width: 90vw;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
+            text-align: center;
         }
 
-        a {
-            color: #E74C3C; /* Red link color */
-            text-decoration: none;
+        .output {
+            margin-bottom: 10px;
+            font-size: 24px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
 
-        /* Style table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        button {
+            padding: 15px;
+            font-size: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Akoss's Restaurant</h1>
-        <p>Contact Information:</p>
-        <p>Email Address: <a href="mailto:Kgbodjo99@gmail.com" style="color: white;">Kgbodjo99@gmail.com</a></p>
-        <p>Phone Number: <a href="tel:2015396243" style="color: white;">201-539-6243</a></p>
-    </header>
-    
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Akoss's Restaurant is a delightful and authentic West African dining experience located in Bloomfield, Nj. Our restaurant offers a warm and welcoming atmosphere, where you can savor the rich and diverse flavors of West African cuisine.</p>
-    </section>
+    <div class="calculator">
+        <div class="output">
+            <input type="text" id="result" value="0" disabled>
+        </div>
+        <div class="buttons">
+            <button onclick="clearResult()">C</button>
+            <button onclick="appendToResult('7')">7</button>
+            <button onclick="appendToResult('8')">8</button>
+            <button onclick="appendToResult('9')">9</button>
+            <button onclick="appendToResult('+')">+</button>
+            <button onclick="appendToResult('4')">4</button>
+            <button onclick="appendToResult('5')">5</button>
+            <button onclick="appendToResult('6')">6</button>
+            <button onclick="appendToResult('-')">-</button>
+            <button onclick="appendToResult('1')">1</button>
+            <button onclick="appendToResult('2')">2</button>
+            <button onclick="appendToResult('3')">3</button>
+            <button onclick="appendToResult('*')">*</button>
+            <button onclick="appendToResult('0')">0</button>
+            <button onclick="appendToResult('.')">.</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendToResult('/')">/</button>
+        </div>
+    </div>
 
-    <section id="menu">
-        <h2>Menu</h2>
-        <h3>Appetizers:</h3>
-        <ul>
-            <li>Jollof Rice - A flavorful rice dish cooked with tomatoes, peppers, and spices. $8.99</li>
-            <li>Suya Skewers - Grilled skewers of marinated beef or chicken served with spicy peanut sauce. $9.99</li>
-            <li>Akara - Deep-fried black-eyed pea fritters served with spicy pepper sauce. $7.99</li>
-        </ul>
-    
-        <h3>Soups and Stews:</h3>
-        <ul>
-            <li>Egusi Soup - Ground melon seeds simmered with vegetables and your choice of chicken or fish. $10.99</li>
-            <li>Fufu and Light Soup - Fufu served with a flavorful light soup containing fish or goat meat. $12.99</li>
-            <li>Groundnut Soup - A rich and creamy peanut soup with chicken or beef. $11.99</li>
-        </ul>
-    
-        <h3>Main Courses:</h3>
-        <ul>
-            <li>Jollof Spaghetti - Spaghetti cooked in a spicy tomato sauce with your choice of chicken or shrimp. $13.99</li>
-        </ul>
-    
-        <h3>Served with a choice of sides:</h3>
-        <ul>
-            <li>Plantains - Fried plantains seasoned with spices. $3.99</li>
-            <li>Yam and Eggplant Sauce - Fried yam slices served with spicy eggplant sauce. $8.99</li>
-            <li>Waakye (Ayimolu) - Rice and beans cooked with millet leaves and served with your choice of protein. $11.99</li>
-        </ul>
-    
-        <h3>Desserts:</h3>
-        <ul>
-            <li>Chinchinga - Grilled sweet plantains served with a scoop of vanilla ice cream. $6.99</li>
-            <li>Mango Pudding - Creamy mango-flavored pudding topped with fresh mango slices. $5.99</li>
-        </ul>
-    
-        <h3>Beverages:</h3>
-        <ul>
-            <li>Hibiscus Drink (Bissap) - A refreshing and tangy hibiscus flower drink. $3.99</li>
-            <li>Ginger Beer - Homemade ginger-flavored soda. $3.99</li>
-            <li>Palm Wine - Traditional West African palm wine. $5.99 (Must be 18 or older)</li>
-        </ul>
-    </section>
+    <script>
+        let currentInput = "0";
 
-    <section id="reservation">
-        <h2>Make a Reservation</h2>
-        <form action="reservation.php" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
+        function appendToResult(value) {
+            if (currentInput === "0" && value !== ".") {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            document.getElementById("result").value = currentInput;
+        }
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput);
+                document.getElementById("result").value = currentInput;
+            } catch (error) {
+                currentInput = "Error";
+                document.getElementById("result").value = currentInput;
+            }
+        }
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required><br><br>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required><br><br>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required><br><br>
-
-            <label for="party-size">Party Size:</label>
-            <input type="number" id="party-size" name="party-size" required><br><br>
-
-            <label for="special-requests">Special Requests:</label><br>
-            <textarea id="special-requests" name="special-requests" rows="4" cols="50"></textarea><br><br>
-
-            <input type="submit" value="Submit">
-       
-            <section id="hours" style='text-align: center; font-family: Georgia, serif; color: #e24433;'>
-                <h2>Hours of Operation</h2>
-                <table>
-                    <tr>
-                        <td>Monday</td>
-                        <td>11:00 AM - 9:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Tuesday</td>
-                        <td>11:00 AM - 9:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday</td>
-                        <td>11:00 AM - 9:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Thursday</td>
-                        <td>11:00 AM - 9:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Friday</td>
-                        <td>11:00 AM - 10:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Saturday</td>
-                        <td>10:00 AM - 10:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>Sunday</td>
-                        <td>10:00 AM - 8:00 PM</td>
-                    </tr>
-                </table>
-                <p>Please note that these hours are subject to change on holidays or for special events. For the most up-to-date information, please visit our website or contact us at <a href="tel:2015396243">201-539-6243</a>.</p>
-            </section>
-            
-
-
+        function clearResult() {
+            currentInput = "0";
+            document.getElementById("result").value = currentInput;
+        }
+    </script> 
+</body>
+</html>
